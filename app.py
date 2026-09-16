@@ -15,7 +15,12 @@ st.write("Enter network traffic features to predict whether the connection is No
 def load_bundle():
     return joblib.load("final_model.pkl")
 
-bundle = load_bundle()
+try:
+    bundle = load_bundle()
+except Exception as e:
+    st.error(f"Model loading error: {type(e).__name__}: {e}")
+    st.stop()
+
 model = bundle["model"]
 encoder = bundle["encoder"]
 feature_columns = bundle["feature_columns"]
