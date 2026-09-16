@@ -10,11 +10,13 @@ st.set_page_config(
 
 st.title("🛡️ Network Intrusion Detection")
 st.write("Enter network traffic features to predict whether the connection is Normal or an Attack.")
+import os
+import joblib
 
 @st.cache_resource
 def load_bundle():
-    return joblib.load("final_model.pkl")
-
+    model_path = os.path.join(os.path.dirname(__file__), "final_model.pkl")
+    return joblib.load(model_path)
 try:
     bundle = load_bundle()
 except Exception as e:
