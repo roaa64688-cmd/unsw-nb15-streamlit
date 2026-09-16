@@ -13,10 +13,14 @@ st.write("Enter network traffic features to predict whether the connection is No
 import os
 import joblib
 
+import os
+import joblib
+
 @st.cache_resource
 def load_bundle():
     model_path = os.path.join(os.path.dirname(__file__), "final_model.pkl")
     return joblib.load(model_path)
+
 try:
     bundle = load_bundle()
 except Exception as e:
